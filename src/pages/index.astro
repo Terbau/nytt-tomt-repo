@@ -1,0 +1,18 @@
+---
+import MovieCard from "../components/MovieCard.astro";
+import Layout from "../layouts/Layout.astro";
+import { getRawWatchlistByUserId, getWatchlistByUserId } from "../lib/imdb";
+
+const USER_ID_BRAGE = "ur154224160";
+
+const pageData = await getRawWatchlistByUserId(USER_ID_BRAGE);
+---
+
+<Layout title="Movies">
+  <main class="flex flex-col gap-16 w-full justify-center my-16">
+    <h1 class="text-6xl text-white">Nytt tomt repo</h1>
+    <div class="flex gap-12 flex-wrap justify-center">
+      {pageData.map((item, index) => <MovieCard movie={item} position={index + 1} />)}
+    </div>
+  </main>
+</Layout>

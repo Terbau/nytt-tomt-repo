@@ -1,0 +1,37 @@
+---
+import type { RawWatchlistItem } from "../lib/types";
+
+interface MovieCardProps {
+  movie: RawWatchlistItem;
+  position: number;
+}
+
+const { movie, position } = Astro.props;
+---
+
+<div class="h-64 w-96 rounded-md overflow-hidden relative">
+  <div
+    class="h-full w-full bg-gradient-to-b from-transparent via-transparent to-black absolute flex flex-col"
+  >
+    <div class="flex flex-row p-2">
+      <div
+        class="rounded-full bg-blue-950 h-12 w-12 flex items-center justify-center"
+      >
+        <span class="text-white text-lg">{position}</span>
+      </div>
+      <div class="ml-auto border border-white bg-black/80 p-2 rounded-full">
+        <span class="text-yellow-300 text-xs">{movie.rating} / 10</span>
+      </div>
+    </div>
+    <div class="p-4 mt-auto">
+      <p class="text-blue-50 text-lg">
+        {movie.title}
+      </p>
+    </div>
+  </div>
+  <img
+    src={movie.image}
+    alt="Movie poster"
+    class="h-full w-full object-cover"
+  />
+</div>
